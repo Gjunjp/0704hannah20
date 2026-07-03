@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLPT文法1-20題統整</title>
+    <style>
+        :root {
+            /* 馬卡龍色系定義 */
+            --bg-color: #fcfdfd;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --macaron-blue: #bae1ff;
+            --macaron-pink: #ffb3ba;
+            --macaron-green: #baffc9;
+            --macaron-yellow: #ffffba;
+            --macaron-purple: #e2cbff;
+            --border-light: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #1e293b;
+            border-bottom: 3px solid var(--macaron-blue);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 輪替卡片標題顏色 */
+        .card:nth-child(1) h2 { border-left-color: var(--macaron-blue); }
+        .card:nth-child(2) h2 { border-left-color: var(--macaron-pink); }
+        .card:nth-child(3) h2 { border-left-color: var(--macaron-green); }
+        .card:nth-child(4) h2 { border-left-color: var(--macaron-purple); }
+        .card:nth-child(5) h2 { border-left-color: var(--macaron-yellow); }
+        .card:nth-child(6) h2 { border-left-color: var(--macaron-blue); }
+        .card:nth-child(7) h2 { border-left-color: var(--macaron-pink); }
+        .card:nth-child(8) h2 { border-left-color: var(--macaron-green); }
+        .card:nth-child(9) h2 { border-left-color: var(--macaron-purple); }
+        .card:nth-child(10) h2 { border-left-color: var(--macaron-yellow); }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #0f172a;
+            border-left: 6px solid;
+            padding-left: 1rem;
+            margin-top: 0;
+            background-color: #f8fafc;
+            padding: 0.75rem 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .question-block {
+            background-color: #f1f5f9;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .analysis-block {
+            margin-bottom: 1rem;
+        }
+
+        .option-correct {
+            font-weight: bold;
+            color: #047857;
+            background-color: #d1fae5;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .note-box {
+            background-color: var(--macaron-yellow);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #451a03;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-light);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        .table-blue th { background-color: var(--macaron-blue); color: #000; }
+        .table-pink th { background-color: var(--macaron-pink); color: #000; }
+        .table-green th { background-color: var(--macaron-green); color: #000; }
+        .table-purple th { background-color: var(--macaron-purple); color: #000; }
+
+        tr:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 互動測驗區域樣式 */
+        .quiz-card h2 {
+            border-left-width: 6px;
+            border-left-style: solid;
+        }
+        
+        .quiz-option {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            width: 100%;
+            display: block;
+        }
+
+        .quiz-option:hover:not(:disabled) {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .explanation-box {
+            display: none;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FLPT文法1-20題統整</h1>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2>第3題：敬語的運用（自我介紹時的謙讓語）</h2>
+            <div class="question-block">
+                題目： 台湾から来ました林と＿＿＿＿＿。<br>
+                （我是從台灣來的林。）
+            </div>
+            <div class="analysis-block">
+                這題的關鍵在於「動作主是誰」以及前面的「助詞 と」。因為是向別人介紹「自己」，所以必須使用降低自己身分的謙讓語。
+                <br><strong>【選項文法解析】</strong>
+                <ul>
+                    <li><strong>A. 申します（もうします）：</strong> <span class="option-correct">正確答案</span>。是動詞「言う（說、稱呼）」的謙讓語。用法：(名前) ＋ と申します（我叫做～）。</li>
+                    <li><strong>B. でございます：</strong> 是「です」的鄭重語（丁寧語），用來禮貌地表達「是～」。<br><em>老師的小提醒（易錯比較）：</em> 如果這題前面沒有「と」，直接寫「林＿＿＿＿。」，填入「でございます」是正確的。但因為題目有助詞「と」，只能接「申します」。</li>
+                    <li><strong>C. いらっしゃいます：</strong> 是動詞「行く（去）、来る（來）、いる（在）」的尊敬語。用來描述「對方或長輩」的動作，絕對不能用在自己身上。</li>
+                    <li><strong>D. おっしゃいます：</strong> 是動詞「言う（說）」的尊敬語。描述「對方或長輩說的話」，同樣不能用在自己身上。</li>
+                </ul>
+            </div>
+            
+            <table class="table-blue">
+                <caption>【相似文法統整：動詞「言う」的敬語變化】</caption>
+                <thead>
+                    <tr>
+                        <th>原形動詞</th>
+                        <th>尊敬語 (抬高對方)</th>
+                        <th>謙讓語 (謙卑自己)</th>
+                        <th>丁寧語 (有禮貌)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>言う</td>
+                        <td>おっしゃいます</td>
+                        <td>申します / 申し上げます</td>
+                        <td>言います</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>第4題：動詞的活用變化（ます形的接續）</h2>
+            <div class="question-block">
+                題目： 森さん、KB会社宛の年賀状をもう＿＿＿＿＿ましたか。<br>
+                （森先生，寄給KB公司的賀年卡你已經寄出了嗎？）
+            </div>
+            <div class="analysis-block">
+                這裡的動詞是「出す（だす）」，屬於第一類動詞（五段動詞）。第一類動詞在做變化時，字尾會在「あ・い・う・え・お」這五個段上變化：
+                <ul>
+                    <li><strong>A. 出せ（だせ）：</strong> 這是命令形或假定形（出せば）的語幹，不能直接接「ました」。</li>
+                    <li><strong>B. 出す（だす）：</strong> 這是辭書形（原形），也就是動詞最原本的樣子，用在常體句尾或連接名詞。</li>
+                    <li><strong>C. 出し（だし）：</strong> <span class="option-correct">正確答案</span>。這是ます形（連用形），將字尾的「す(su)」改成い段音的「し(shi)」，因此可以完美接上「〜ました」，變成「出しました（寄出了）」。</li>
+                    <li><strong>D. 出さ（ださ）：</strong> 這是ない形（未然形）的語幹。字尾改成あ段音，後面通常接否定助動詞「ない」，變成「出さない（不寄出）」。</li>
+                </ul>
+            </div>
+
+            <table class="table-pink">
+                <caption>【相似文法統整：第一類動詞「出す」的活用】</caption>
+                <thead>
+                    <tr>
+                        <th>活用形</th>
+                        <th>變化方式</th>
+                        <th>範例意義</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>未然形 (あ段)</td>
+                        <td>出さ ＋ ない</td>
+                        <td>不寄</td>
+                    </tr>
+                    <tr>
+                        <td>連用形 (い段)</td>
+                        <td>出し ＋ ます / ました</td>
+                        <td>寄 / 寄了</td>
+                    </tr>
+                    <tr>
+                        <td>終止形 (う段)</td>
+                        <td>出す</td>
+                        <td>寄 - 原形</td>
+                    </tr>
+                    <tr>
+                        <td>命令形 (え段)</td>
+                        <td>出せ</td>
+                        <td>給我寄！</td>
+                    </tr>
+                    <tr>
+                        <td>意向形 (お段)</td>
+                        <td>出そ ＋ う</td>
+                        <td>寄吧！</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>第7題：形容詞的過去式變化與詞性判斷</h2>
+            <div class="question-block">
+                題目： 去年の春、沖縄へ行ったとき、海がとてもきれい＿＿＿＿＿。<br>
+                （去年春天去沖繩的時候，海非常漂亮。）
+            </div>
+            
+            <table class="table-green">
+                <thead>
+                    <tr>
+                        <th>詞性</th>
+                        <th>現在 / 未來式 (肯定)</th>
+                        <th>過去式 (肯定)</th>
+                        <th>易錯提醒</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>い形容詞</td>
+                        <td>美しい (美麗的)</td>
+                        <td>美しかったです</td>
+                        <td>字尾去掉い加上かった</td>
+                    </tr>
+                    <tr>
+                        <td>な形容詞</td>
+                        <td>きれい (漂亮的)</td>
+                        <td>きれいでした</td>
+                        <td>不可以說 きれいかった</td>
+                    </tr>
+                    <tr>
+                        <td>な形容詞</td>
+                        <td>ゆうめい (有名的)</td>
+                        <td>ゆうめいでした</td>
+                        <td>不可以說 ゆうめいかった</td>
+                    </tr>
+                    <tr>
+                        <td>な形容詞</td>
+                        <td>きらい (討厭的)</td>
+                        <td>きらいでした</td>
+                        <td>不可以說 きらいかった</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note-box">
+                <strong>補充思考：</strong> 否定的時候呢？「不美麗」、「不漂亮」該如何進行詞型變化，需一併複習。
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>第9題：尊敬語的禮貌請求句型</h2>
+            <div class="question-block">
+                題目： 抽選の葉書は、この住所にお＿＿＿＿ください。<br>
+                （抽獎用的明信片，請寄到這個地址。）
+            </div>
+            <div class="analysis-block">
+                尊敬語句型：「お ＋ 動詞ます形（去掉ます） ＋ ください」。用來非常禮貌地請求對方做某事，常常出現在商業場合或是對客戶、長輩的說明中。
+                <ul>
+                    <li><strong>A. 送る：</strong> 這是辭書形（原形），不能直接放進這個敬語句型中。</li>
+                    <li><strong>B. 送り：</strong> <span class="option-correct">正確答案</span>。這是ます形（連用形），將「送ります」去掉「ます」保留下來的語幹。套用句型變成「お送りください（請您寄送）」。</li>
+                    <li><strong>C. 送って：</strong> 這是て形。如果句子前面沒有加上尊敬接頭詞「お」，直接說「送ってください」是正確的。但因為題目空格前面已經有「お」了，日文裡沒有「お送ってください」這種說法。</li>
+                    <li><strong>D. 送った：</strong> 這是た形（過去式），表達已經發生的動作，無法接續表示請求的「ください」。</li>
+                </ul>
+            </div>
+
+            <table class="table-purple">
+                <caption>【相似文法統整：請求對方做某事的說法比較】</caption>
+                <thead>
+                    <tr>
+                        <th>句型種類</th>
+                        <th>文法公式</th>
+                        <th>例句</th>
+                        <th>適用場合</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>標準禮貌請求</td>
+                        <td>動詞て形 ＋ ください</td>
+                        <td>この住所に送ってください。</td>
+                        <td>日常對話、對平輩或一般關係的人</td>
+                    </tr>
+                    <tr>
+                        <td>尊敬語請求</td>
+                        <td>お ＋ 動詞ます形 ＋ ください</td>
+                        <td>この住所にお送りください。</td>
+                        <td>商業書信、正式場合、對長輩或客戶</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>第10題：電話用語中的輕微轉折</h2>
+            <div class="question-block">
+                題目： もしもし、宮崎です＿＿＿＿、中原さんをお願いします。<br>
+            </div>
+            <div class="analysis-block">
+                <ul>
+                    <li><strong>口語/較輕鬆場合：</strong> 「名前ですけど、～をお願いします。」</li>
+                    <li><strong>正式/商業場合：</strong> 「名前ですが、～をお願いできますでしょうか。」</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>第13題：羅列多重原因的接續句型</h2>
+            <div class="question-block">
+                題目： 雨が降っている＿＿＿＿、風も強いから、家にいるほうがずっといい。<br>
+                （下著雨，而且風也很大，所以待在家裡最好。）
+            </div>
+            <div class="analysis-block">
+                <ul>
+                    <li><strong>A. し：</strong> <span class="option-correct">正確答案</span>。「〜し、〜し、〜から」是日語中非常道地的表達方式，用來羅列多個理由。前面的動詞通常採用「常體（普通形）」。</li>
+                    <li><strong>B. と：</strong> 用於表示並列名詞或是引用內容，無法直接連接兩個句子。</li>
+                    <li><strong>C. が：</strong> 表示轉折（但是），放在這裡語意不通。</li>
+                    <li><strong>D. なら：</strong> 用於表示假設或針對特定話題進行回應，不適用於羅列並列原因。</li>
+                </ul>
+            </div>
+            <div class="note-box">
+                <strong>【文法統整：〜し、〜し、〜から 的使用邏輯】</strong><br>
+                使用時機：當你想列舉超過一個以上的理由時，例如：<br>
+                頭も痛いし、熱もあるし、会社を休む。<br>
+                頭も痛いし、熱もあるから、会社を休む。
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>第16題：表達可能性的否定句型</h2>
+            <div class="question-block">
+                題目： 今日全部は＿＿＿＿そうもないので、この辺でやめましょうか。<br>
+                （今天看起來完全無法全部結束，所以我們就在這裡停下來吧。）
+            </div>
+            <div class="analysis-block">
+                關鍵文法是「〜そうもない」或「〜そうにない」，用來表示「完全沒有...的可能性」，接續必須使用「動詞ます形（去掉ます）」。
+                <ul>
+                    <li><strong>A. 終わり：</strong> <span class="option-correct">正確答案</span>。符合「動詞ます形 ＋ そうもない」接續規則。</li>
+                    <li><strong>B. 終わら：</strong> 未然形語幹。</li>
+                    <li><strong>C. 終わる：</strong> 辭書形，無法直接接續。</li>
+                    <li><strong>D. 終わろ：</strong> 意向形語幹。</li>
+                </ul>
+                <p><strong>更多例句：</strong><br>
+                - この膨大な資料は、今日中に終わりそうもない。<br>
+                - 会議が長引いていて、昼休みまでに戻れそうにない。<br>
+                - 空が真っ黒で、雨がやみそうもない。<br>
+                - 風が強すぎて、雲が動いてくれない。今日は晴れそうにない。
+                </p>
+            </div>
+
+            <table class="table-blue">
+                <caption>【相似文法統整：樣態助動詞「そうだ」的肯定與否定】</caption>
+                <thead>
+                    <tr>
+                        <th>句型</th>
+                        <th>意思</th>
+                        <th>例句</th>
+                        <th>接續方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>〜そうだ</td>
+                        <td>看起來好像會...</td>
+                        <td>雨が降りそうだ。</td>
+                        <td>動詞ます形 ＋ そうだ</td>
+                    </tr>
+                    <tr>
+                        <td>〜そうもない / 〜そうにない</td>
+                        <td>看起來完全不會...</td>
+                        <td>雨が降りそうもない。</td>
+                        <td>動詞ます形 ＋ そうもない</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>第17題：情境對話中的接續詞</h2>
+            <div class="question-block">
+                題目： ＿＿＿＿、失礼いたします。<br>
+                （那麼，我就先告辭了。）
+            </div>
+            <div class="analysis-block">
+                「失礼いたします」前面需要搭配用來「轉換話題」或「準備採取下一個行動」的接續詞。
+                <ul>
+                    <li><strong>A. それで：</strong> 因此、所以（因果關係）。</li>
+                    <li><strong>B. それは：</strong> 那個是...（提示主詞）。</li>
+                    <li><strong>C. それに：</strong> 而且、再加上（累加資訊）。</li>
+                    <li><strong>D. それでは：</strong> <span class="option-correct">正確答案</span>。那麼、既然如此。在準備離開或結束對話時的起手式，口語縮略成「では」或「じゃあ」。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>第18題：程度漸進的固定句型</h2>
+            <div class="question-block">
+                題目： 何事も練習＿＿＿＿するほど自信がつくものだ。<br>
+                （無論什麼事情，越是練習，就越會產生自信。）
+            </div>
+            <div class="analysis-block">
+                經典慣用句型：「〜ば〜ほど」（越...越...）。接續公式：「動詞條件形（ば形） ＋ 動詞辭書形 ＋ ほど」。
+                <ul>
+                    <li><strong>A. したら：</strong> たら形，無搭配此固定句型之用法。</li>
+                    <li><strong>B. すれば：</strong> <span class="option-correct">正確答案</span>。「する」的ば形，套入公式。</li>
+                    <li><strong>C. するに：</strong> 非接續形式。</li>
+                    <li><strong>D. するなら：</strong> なら形，用於承接話題。</li>
+                </ul>
+            </div>
+
+            <table class="table-pink">
+                <caption>【相似文法統整：〜ば〜ほど 句型接續規則】</caption>
+                <thead>
+                    <tr>
+                        <th>詞性</th>
+                        <th>變化公式</th>
+                        <th>例句</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>動詞</td>
+                        <td>ば形 ＋ 辭書形 ＋ ほど</td>
+                        <td>読めば読むほど面白い。(越讀越有趣。)</td>
+                    </tr>
+                    <tr>
+                        <td>い形容詞</td>
+                        <td>去い加ければ ＋ 原形 ＋ ほど</td>
+                        <td>安ければ安いほどいい。(越便宜越好。)</td>
+                    </tr>
+                    <tr>
+                        <td>な形容詞</td>
+                        <td>なら(ば) ＋ 語幹な ＋ ほど</td>
+                        <td>便利なら便利なほどいい。(越方便越好。)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>第19題：空間助詞的運用</h2>
+            <div class="question-block">
+                題目： すみません、浅草線は銀座駅＿＿＿＿通りますか。<br>
+                （不好意思，淺草線會經過銀座站嗎？）
+            </div>
+            <div class="analysis-block">
+                動詞「通る（經過）」屬於移動動詞。描述動作「穿越、經過」某個空間或路線時，必須使用助詞「を」。
+                <ul>
+                    <li><strong>A. に：</strong> 用來表示動作的「目的地」或「歸著點」。</li>
+                    <li><strong>B. で：</strong> 用來表示動作進行的「場所」。</li>
+                    <li><strong>C. を：</strong> <span class="option-correct">正確答案</span>。表示移動動詞所經過的「場所或路徑」。</li>
+                    <li><strong>D. が：</strong> 提示主詞。</li>
+                </ul>
+            </div>
+            <div class="note-box">
+                <strong>【相似文法統整：助詞 で 與 を 的空間概念比較】</strong><br>
+                公園<strong>で</strong>遊ぶ。（在公園裡玩耍，動作停留在定點範圍）<br>
+                公園<strong>を</strong>散歩する。（在公園裡散步，動作有移動的軌跡或穿過該空間）
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>第20題：表達意志與主詞的限制</h2>
+            <div class="question-block">
+                題目： あの人は日本へ留学に行こうと＿＿＿＿。<br>
+                （那個人打算要去日本留學。）
+            </div>
+            <div class="analysis-block">
+                <ul>
+                    <li><strong>第一人稱 (我)：</strong> 日本へ行こうと 思います / 思っています。（兩者皆可）</li>
+                    <li><strong>第三人稱 (他)：</strong> 日本へ行こうと 思っています。（只能用這句）</li>
+                </ul>
+            </div>
+        </div>
+
+        <h1 style="margin-top: 3rem; border-bottom: 3px solid var(--macaron-green);">課後互動式練習 (20題)</h1>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">請點選下方選項進行作答，系統將立即顯示正誤與詳細解析。</p>
+        
+        <div id="quiz-container">
+            <!-- 題目將透過 JavaScript 動態生成 -->
+        </div>
+
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                id: 1,
+                question: "田中さんは「明日、会議に＿＿＿＿＿」と言っていました。",
+                options: ["行きます", "行く", "行って", "行った"],
+                correctAnswer: 1,
+                explanation: "【解析】「～と言っていました」前方若引號內為直接引用（有引號「」），則引號內保留原時態與語氣。若無引號，則通常使用常體（普通形）。此處有引號，但因選項設計，最標準的間接轉述常體為「行く」。(若說話者當時是用「行きます」，則A亦可，但一般考題傾向考常體變化)。"
+            },
+            {
+                id: 2,
+                question: "この本は＿＿＿＿＿ほど、面白くなります。",
+                options: ["読めば読む", "読んだら読む", "読むなら読む", "読んで読む"],
+                correctAnswer: 0,
+                explanation: "【解析】固定句型「〜ば〜ほど」（越...越...）。動詞條件形（ば形） ＋ 動詞辭書形 ＋ ほど。「読む」的ば形為「読めば」。"
+            },
+            {
+                id: 3,
+                question: "先生、私のレポートを＿＿＿＿＿いただけないでしょうか。",
+                options: ["見る", "見て", "拝見して", "ご覧になって"],
+                correctAnswer: 1,
+                explanation: "【解析】「〜ていただけないでしょうか」表示「能不能請您幫我...」。動詞為「見る（看）」，請求「老師（對方）」看，動作主是老師，應使用て形「見て」。"
+            },
+            {
+                id: 4,
+                question: "雨が＿＿＿＿＿そうだから、傘を持っていきましょう。",
+                options: ["降る", "降り", "降って", "降らない"],
+                correctAnswer: 1,
+                explanation: "【解析】「〜そうだ（看起來好像會...）」接續為：動詞ます形（去掉ます）。「降る」的ます形為「降ります」，去掉ます為「降り」。"
+            },
+            {
+                id: 5,
+                question: "私は社長に＿＿＿＿＿。",
+                options: ["お呼びしました", "お呼びになりました", "呼ばれました", "呼んでいただきました"],
+                correctAnswer: 2,
+                explanation: "【解析】被動語態。「我被社長叫去」。主詞是「私」，受詞（發出動作的人）用「に」，動詞用被動形。「呼ぶ」的被動形為「呼ばれる」。"
+            },
+            {
+                id: 6,
+                question: "このケーキは甘＿＿＿＿＿、おいしいです。",
+                options: ["すぎて", "すぎで", "すぎ", "すぎだ"],
+                correctAnswer: 0,
+                explanation: "【解析】「〜すぎる（太...）」接續為：い形容詞去い / な形容詞語幹 / 動詞ます形去掉ます ＋ すぎる。作為原因或中頓接續時，轉為て形「すぎて」。「甘い」去い加「すぎて」。"
+            },
+            {
+                id: 7,
+                question: "部屋を＿＿＿＿＿しておいてください。",
+                options: ["きれい", "きれいに", "きれいな", "きれいで"],
+                correctAnswer: 1,
+                explanation: "【解析】「〜く / 〜にする（把...弄成...狀態）」。い形容詞去い加「く」，な形容詞/名詞加「に」。きれいはな形容詞，故用「きれいに」。"
+            },
+            {
+                id: 8,
+                question: "彼は日本語が話せる＿＿＿＿＿、英語もペラペラです。",
+                options: ["ばかりでなく", "だけでなく", "のみならず", "すべて"],
+                correctAnswer: 1,
+                explanation: "【解析】「A だけでなく B も」（不僅A，B也）。「ばかりでなく」和「のみならず」意思相近，但「だけでなく」最為口語及常見。"
+            },
+            {
+                id: 9,
+                question: "電車が遅れた＿＿＿＿＿、遅刻してしまいました。",
+                options: ["ため", "せい", "おかげ", "から"],
+                correctAnswer: 1,
+                explanation: "【解析】「〜せいで（因為...導致不好的結果）」。「ため（客觀原因）」、「おかげ（好結果）」。"
+            },
+            {
+                id: 10,
+                question: "窓が＿＿＿＿＿ままになっていますよ。",
+                options: ["開ける", "開けて", "開いた", "開く"],
+                correctAnswer: 2,
+                explanation: "【解析】「〜たまま（保持...狀態）」。前面接動詞た形。「開く（自動詞：開著）」的た形為「開いた」。"
+            },
+            {
+                id: 11,
+                question: "山田さんは今、席を＿＿＿＿＿おります。",
+                options: ["外して", "外されて", "お外しして", "外させられて"],
+                correctAnswer: 0,
+                explanation: "【解析】「〜ております」是「〜ています」的謙讓語。動作主是「山田さん（自己公司的人）」，對外人說話時，己方行為用謙讓語。「席を外す（離開座位）」的て形為「外して」。"
+            },
+            {
+                id: 12,
+                question: "ご不明な点が＿＿＿＿＿、お知らせください。",
+                options: ["ありましたら", "ございましたら", "ありましたなら", "ございましたなら"],
+                correctAnswer: 1,
+                explanation: "【解析】「ありましたら（如果有的話）」的鄭重語為「ございましたら」，常用於商業書信或對客氣的場合。"
+            },
+            {
+                id: 13,
+                question: "あそこに車が＿＿＿＿＿ありますね。",
+                options: ["止めて", "止まって", "止める", "止まる"],
+                correctAnswer: 0,
+                explanation: "【解析】「他動詞て形 ＋ ある」表示「某人有意圖地做某事後，留下的狀態」。車被停在那裡，用他動詞「止める」的て形「止めて」。"
+            },
+            {
+                id: 14,
+                question: "もう少しで事故を＿＿＿＿＿ところだった。",
+                options: ["起こす", "起こした", "起こしている", "起こし"],
+                correctAnswer: 0,
+                explanation: "【解析】「動詞辭書形 ＋ ところだった」表示「差一點就...（但沒發生）」。「起こすところだった（差一點就發生）」。"
+            },
+            {
+                id: 15,
+                question: "いくら＿＿＿＿＿、返事がありません。",
+                options: ["呼ぶと", "呼べば", "呼んだら", "呼んでも"],
+                correctAnswer: 3,
+                explanation: "【解析】「いくら 〜ても（無論怎麼...都...）」。「呼ぶ」的ても形為「呼んでも」。"
+            },
+            {
+                id: 16,
+                question: "明日は早く起き＿＿＿＿＿なりません。",
+                options: ["なくては", "ないでは", "ないとは", "ないには"],
+                correctAnswer: 0,
+                explanation: "【解析】「〜なくてはならない（必須...）」。「起きる」的ない形為「起きない」，去い加「くてはならない」。"
+            },
+            {
+                id: 17,
+                question: "私が＿＿＿＿＿とおりに、書いてください。",
+                options: ["言う", "言った", "言って", "言わない"],
+                correctAnswer: 1,
+                explanation: "【解析】「動詞た形 / 辭書形 ＋ とおりに（依照...）」。已經說過的話，用た形「言った」。"
+            },
+            {
+                id: 18,
+                question: "彼は何も＿＿＿＿＿ように、笑っていました。",
+                options: ["知る", "知らない", "知った", "知らなかった"],
+                correctAnswer: 3,
+                explanation: "【解析】「〜ように（就像...一樣）」。像過去什麼都不知道一樣，用過去否定「知らなかった」。"
+            },
+            {
+                id: 19,
+                question: "このパソコンは＿＿＿＿＿やすいです。",
+                options: ["使う", "使い", "使って", "使った"],
+                correctAnswer: 1,
+                explanation: "【解析】「動詞ます形去掉ます ＋ やすい（容易... / 好...）」。「使う」的ます形去ます為「使い」。"
+            },
+            {
+                id: 20,
+                question: "会議は３時＿＿＿＿＿終わる予定です。",
+                options: ["まで", "までに", "までで", "までには"],
+                correctAnswer: 1,
+                explanation: "【解析】「〜までに（在...期限之前）」。「まで」是持續到某時，「までに」是在某時間點之前完成。會議預計在3點前結束，用「までに」。"
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+
+        // 生成測驗 DOM
+        quizData.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = 'card quiz-card';
+            
+            // 輪流分配馬卡龍邊框顏色
+            const colors = ['var(--macaron-blue)', 'var(--macaron-pink)', 'var(--macaron-green)', 'var(--macaron-purple)', 'var(--macaron-yellow)'];
+            const borderColor = colors[index % colors.length];
+
+            card.innerHTML = `
+                <h2 style="border-left-color: ${borderColor}">測驗題 ${q.id}</h2>
+                <div class="question-block">
+                    ${index + 1}. ${q.question}
+                </div>
+                <div class="options-container" id="options-${q.id}" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                    ${q.options.map((opt, i) => `
+                        <button class="quiz-option" onclick="checkAnswer(${q.id}, ${i})">
+                            ${String.fromCharCode(65 + i)}. ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                <div id="explanation-${q.id}" class="explanation-box">
+                    <strong>【解答與解析】</strong><br>
+                    正確答案： <span class="option-correct">${String.fromCharCode(65 + q.correctAnswer)}. ${q.options[q.correctAnswer]}</span><br><br>
+                    ${q.explanation}
+                </div>
+            `;
+            quizContainer.appendChild(card);
+        });
+
+        // 檢查答案的邏輯函數
+        function checkAnswer(questionId, selectedIndex) {
+            const questionData = quizData.find(q => q.id === questionId);
+            const optionsContainer = document.getElementById(`options-${questionId}`);
+            const buttons = optionsContainer.getElementsByTagName('button');
+            const explanationBox = document.getElementById(`explanation-${questionId}`);
+
+            // 停用該題所有按鈕，防止重複作答
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.style.cursor = 'default';
+            }
+
+            // 標示選擇狀態與正確答案
+            if (selectedIndex === questionData.correctAnswer) {
+                // 答對 - 綠色
+                buttons[selectedIndex].style.backgroundColor = '#d1fae5'; 
+                buttons[selectedIndex].style.borderColor = '#047857';
+                buttons[selectedIndex].style.color = '#047857';
+                buttons[selectedIndex].style.fontWeight = 'bold';
+            } else {
+                // 答錯 - 紅色
+                buttons[selectedIndex].style.backgroundColor = '#fee2e2'; 
+                buttons[selectedIndex].style.borderColor = '#b91c1c';
+                buttons[selectedIndex].style.color = '#b91c1c';
+                
+                // 顯示正確選項 - 綠色
+                buttons[questionData.correctAnswer].style.backgroundColor = '#d1fae5';
+                buttons[questionData.correctAnswer].style.borderColor = '#047857';
+                buttons[questionData.correctAnswer].style.color = '#047857';
+                buttons[questionData.correctAnswer].style.fontWeight = 'bold';
+            }
+
+            // 展開詳細解析
+            explanationBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
